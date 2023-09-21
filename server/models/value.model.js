@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 
-const toleranceSchema = new mongoose.Schema({
+const valueSchema = new mongoose.Schema({
+    type: {
+        type: String,
+        required: true,
+    },
     color: {
         type: String,
         required: true,
@@ -11,4 +15,4 @@ const toleranceSchema = new mongoose.Schema({
     }
 });
 
-export default mongoose.model('Tolerance', toleranceSchema);
+export default mongoose.model('Value', valueSchema);

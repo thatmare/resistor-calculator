@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import { postMultiplier } from '../controllers/multiplier.controller.js';
-import { postTolerance } from '../controllers/tolerance.controller.js'
+import { postValue, getValue } from '../controllers/value.controller.js';
 
 const router = Router();
 
-router.post('/multiplier', postMultiplier);
-router.post('/tolerance', postTolerance);
+router.post('/values', postValue);
+
+router.get('/values', getValue);
 
 export default router;
