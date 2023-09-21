@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const multiplierSchema = mongoose.Schema({
+const toleranceSchema = new mongoose.Schema({
     color: {
         type: String,
         required: true,
@@ -11,4 +11,4 @@ const multiplierSchema = mongoose.Schema({
     }
 });
 
-export default mongoose.model('Multiplier', multiplierSchema);
+export default mongoose.model('Tolerance', toleranceSchema);
