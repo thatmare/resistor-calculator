@@ -1,7 +1,7 @@
-import { ToleranceCalculator } from "./ToleranceCalculator";
+import { getValues } from "../Services/fetchValues";
 
 class OhmValueCalculator {
-  CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor) {
+  async CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor) {
     const colorValues = {
       black: 0,
       brown: 1,
@@ -11,23 +11,21 @@ class OhmValueCalculator {
       green: 5,
       blue: 6,
       violet: 7,
-      gray: 8,
+      grey: 8,
       white: 9,
     };
 
     const digit1 = colorValues[bandAColor];
     const digit2 = colorValues[bandBColor];
+    const multiplier = await getValues("multiplier", `${bandCColor}`);
+    const tolerance = await getValues("tolerance", `${bandDColor}`);
 
-    let multiplier;
-    if (bandCColor === "gold") {
-      multiplier = 0.1;
-    } else if (bandCColor === "silver") {
-      multiplier = 0.01;
-    } else {
-      multiplier = 10 ** colorValues[bandCColor];
+    if (multiplier === undefined || tolerance === undefined) {
+      console.log(
+        "Error: No se pudieron obtener los valores de multiplier o tolerance."
+      );
+      return null;
     }
-
-    const tolerance = ToleranceCalculator(bandDColor);
 
     const ohmValue = (digit1 * 10 + digit2) * multiplier;
 
@@ -40,6 +38,11 @@ class OhmValueCalculator {
 
 const calculator = new OhmValueCalculator();
 
-const result = calculator.CalculateOhmValue("blue", "orange", "red", "gray");
-
-console.log(result);
+calculator
+  .CalculateOhmValue("blue", "green", "yellow", "green")
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
