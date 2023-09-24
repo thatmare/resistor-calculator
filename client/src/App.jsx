@@ -1,4 +1,4 @@
-import { Options } from "./components/Options"
+import { ResistorCalculator } from "./components/Calculator"
 import { Container } from "./components/Container"
 
 function App() {  
@@ -6,7 +6,7 @@ function App() {
   return (
     <div>
       <Container/>
-      <Options/>
+      <ResistorCalculator></ResistorCalculator>
     </div>
   )
 }

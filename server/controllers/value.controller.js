@@ -24,7 +24,7 @@ export const postValue = async (req, res) => {
 
 export const getValue = async (req, res) => {
   try {
-    const { color, type } = req.query;
+    const { type, color } = req.query;
 
     const filter = {};
 
