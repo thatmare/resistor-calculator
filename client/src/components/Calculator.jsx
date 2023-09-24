@@ -1,6 +1,10 @@
-import { useState } from "react";
-import { OhmValueCalculator } from "../utils/OhmCalculator.class";
-import { Options } from "./Options";
+import { useState, useEffect } from "react";
+import { OhmValueCalculator } from "../utils/OhmCalculator.class.js";
+import { formatNumber } from "../utils/NumberFormat.js";
+import { ColorPicker } from "./ColorPicker.js";
+import { Digits } from "../models/Digits.js";
+import { Multiplier } from "../models/Multiplier.js";
+import { Tolerance } from "../models/Tolerance.js";
 
 export function ResistorCalculator() {
   const [bandAColor, setBandAColor] = useState("");
@@ -8,6 +12,7 @@ export function ResistorCalculator() {
   const [bandCColor, setBandCColor] = useState("");
   const [bandDColor, setBandDColor] = useState("");
   const [result, setResult] = useState(null);
+  const [message, setMessage] = useState("");
 
   const handleBandColorChange = (band, color) => {
     switch (band) {
@@ -39,30 +44,54 @@ export function ResistorCalculator() {
           bandDColor
         );
         setResult(total);
+        setMessage("");
       } catch (error) {
-        console.error("Cannot calculate resistance", error);
+        setMessage("Cannot calculate resistance");
+        console.error(error);
       }
     } else {
+      setMessage("Select all band colors.");
       console.error("Select all band colors.");
     }
   };
 
+  useEffect(() => {
+    calculateResistance();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bandAColor, bandBColor, bandCColor, bandDColor]);
+
   return (
     <div>
       <div>
-        <Options band="A" onColorChange={handleBandColorChange}></Options>
-        <Options band="B" onColorChange={handleBandColorChange}></Options>
-        <Options band="C" onColorChange={handleBandColorChange}></Options>
-        <Options band="D" onColorChange={handleBandColorChange}></Options>
+        <ColorPicker
+          band="A"
+          onColorChange={handleBandColorChange}
+          colors={Digits}
+        ></ColorPicker>
+        <ColorPicker
+          band="B"
+          onColorChange={handleBandColorChange}
+          colors={Digits}
+        ></ColorPicker>
+        <ColorPicker
+          band="C"
+          onColorChange={handleBandColorChange}
+          colors={Multiplier}
+        ></ColorPicker>
+        <ColorPicker
+          band="D"
+          onColorChange={handleBandColorChange}
+          colors={Tolerance}
+        ></ColorPicker>
       </div>
-      <button onClick={calculateResistance}>Calcular resistencia</button>
       {result && (
         <div className="result">
-          Valor de la Resistencia: {result.ohmValue} Ohms
+          Resistor value: {formatNumber(result.ohmValue)} Ohms
           <br />
-          Tolerancia: {result.tolerance}%
+          Tolerance: {result.tolerance}%
         </div>
       )}
+      {message && <p>{message}</p>}
     </div>
   );
 }

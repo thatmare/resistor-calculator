@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Options({ band, onColorChange }) {
+export function ColorPicker({ band, onColorChange, colors }) {
   const [selectedColor, setSelectedColor] = useState("");
 
   const handleSelectChange = (e) => {
@@ -15,9 +15,11 @@ export function Options({ band, onColorChange }) {
       value={selectedColor}
     >
       <option value="">Select a color</option>
-      <option value="red">Red</option>
-      <option value="yellow">Yellow</option>
-      <option value="blue">Blue</option>
+      {colors.map((color) => (
+        <option key={color.value} value={color.value}>
+          {color.label}
+        </option>
+      ))}
     </select>
   );
 }

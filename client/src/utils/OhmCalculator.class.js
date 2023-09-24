@@ -27,7 +27,7 @@ export class OhmValueCalculator {
       return null;
     }
 
-    const ohmValue = (digit1 * 10 + digit2) * multiplier;
+    const ohmValue = ((digit1 * 10) + digit2) * multiplier;
 
     return {
       ohmValue,
@@ -36,13 +36,13 @@ export class OhmValueCalculator {
   }
 }
 
-const calculator = new OhmValueCalculator();
+// const calculator = new OhmValueCalculator();
 
-calculator
-  .CalculateOhmValue("red", "blue", "brown", "gold")
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// calculator
+//   .CalculateOhmValue("grey", "red", "silver", "gold")
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });

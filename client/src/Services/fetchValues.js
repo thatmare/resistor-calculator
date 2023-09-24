@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api';
+const API_URL = "http://localhost:5000/api";
 
 export function getValues(type, color) {
   return fetch(`${API_URL}/values?type=${type}&color=${color}`, {
