@@ -1,14 +1,11 @@
-import { ResistorCalculator } from "./components/Calculator"
-import { Container } from "./components/Container"
+import { Calculator } from "./components/Calculator";
 
-function App() {  
-
+function App() {
   return (
     <div>
-      <Container/>
-      <ResistorCalculator></ResistorCalculator>
+      <Calculator />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

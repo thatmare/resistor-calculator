@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { OhmValueCalculator } from "../utils/OhmCalculator.class.js";
-import { formatNumber } from "../utils/NumberFormat.js";
-import { ColorPicker } from "./ColorPicker.js";
+//import { formatNumber } from "../utils/NumberFormat.js";
+import { ColorPicker } from "./ColorPicker.jsx";
 import { Digits } from "../models/Digits.js";
 import { Multiplier } from "../models/Multiplier.js";
 import { Tolerance } from "../models/Tolerance.js";
+import { ResistorDrawing } from "./ResistorDrawing.jsx";
 
-export function ResistorCalculator() {
+export function Calculator() {
   const [bandAColor, setBandAColor] = useState("");
   const [bandBColor, setBandBColor] = useState("");
   const [bandCColor, setBandCColor] = useState("");
@@ -51,7 +52,6 @@ export function ResistorCalculator() {
       }
     } else {
       setMessage("Select all band colors.");
-      console.error("Select all band colors.");
     }
   };
 
@@ -61,37 +61,55 @@ export function ResistorCalculator() {
   }, [bandAColor, bandBColor, bandCColor, bandDColor]);
 
   return (
-    <div>
-      <div>
-        <ColorPicker
-          band="A"
-          onColorChange={handleBandColorChange}
-          colors={Digits}
-        ></ColorPicker>
-        <ColorPicker
-          band="B"
-          onColorChange={handleBandColorChange}
-          colors={Digits}
-        ></ColorPicker>
-        <ColorPicker
-          band="C"
-          onColorChange={handleBandColorChange}
-          colors={Multiplier}
-        ></ColorPicker>
-        <ColorPicker
-          band="D"
-          onColorChange={handleBandColorChange}
-          colors={Tolerance}
-        ></ColorPicker>
-      </div>
-      {result && (
-        <div className="result">
-          Resistor value: {formatNumber(result.ohmValue)} Ohms
-          <br />
-          Tolerance: {result.tolerance}%
+    <div className="max-w-3xl m-auto">
+      <h1 className="font-black text-5xl text-center my-8 bg-gradient-to-r from-slate-200 to-slate-400 text-transparent bg-clip-text">
+        Resistor Color Code Calculator
+      </h1>
+      <p className="text-2xl text-slate-200 my-1 text-justify">
+        Pick a color for each band. The calculator will instantly determine the
+        resistance value based on your color selections. Currently, only 4-color
+        band resistors are supported.
+      </p>
+      <hr />
+      <div className="flex flex-row">
+        <div>
+          <p className="mx-3 my-1 text-slate-200 text-xl font-bold italic">
+            1st Band
+          </p>
+          <ColorPicker
+            band="A"
+            onColorChange={handleBandColorChange}
+            colors={Digits}
+          ></ColorPicker>
+          <p className="mx-3 my-1 text-slate-200 text-xl font-bold italic">
+            2nd Band
+          </p>
+          <ColorPicker
+            band="B"
+            onColorChange={handleBandColorChange}
+            colors={Digits}
+          ></ColorPicker>
+          <p className="mx-3 my-1 text-slate-200 text-xl font-bold italic">
+            Multiplier
+          </p>
+          <ColorPicker
+            band="C"
+            onColorChange={handleBandColorChange}
+            colors={Multiplier}
+          ></ColorPicker>
+          <p className="mx-3 my-1 text-slate-200 text-xl font-bold italic">
+            Tolerance
+          </p>
+          <ColorPicker
+            band="D"
+            onColorChange={handleBandColorChange}
+            colors={Tolerance}
+          ></ColorPicker>
         </div>
-      )}
-      {message && <p>{message}</p>}
+        <div className="flex flex-col justify-center">
+          <ResistorDrawing result={result} message={message}></ResistorDrawing>
+        </div>
+      </div>
     </div>
   );
 }

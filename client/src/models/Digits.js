@@ -1,12 +1,12 @@
 export const Digits = [
-  { label: "Black", value: "black" },
-  { label: "Brown", value: "brown" },
-  { label: "Red", value: "red" },
-  { label: "Orange", value: "orange" },
-  { label: "Yellow", value: "yellow" },
-  { label: "Green", value: "green" },
-  { label: "Blue", value: "blue" },
-  { label: "Violet", value: "violet" },
-  { label: "Grey", value: "grey" },
-  { label: "White", value: "white" }
+  { label: "Black", value: "black", class: "bg-black" },
+  { label: "Brown", value: "brown", class: "bg-yellow-900" },
+  { label: "Red", value: "red", class: "bg-red-600" },
+  { label: "Orange", value: "orange", class: "bg-orange-500" },
+  { label: "Yellow", value: "yellow", class: "bg-amber-400" },
+  { label: "Green", value: "green", class: "bg-green-600" },
+  { label: "Blue", value: "blue", class: "bg-sky-600" },
+  { label: "Violet", value: "violet", class: "bg-indigo-700" },
+  { label: "Grey", value: "grey", class: "bg-gray-700" },
+  { label: "White", value: "white", class: "bg-white" }
 ];
