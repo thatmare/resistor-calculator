@@ -1,5 +1,5 @@
+// original connection to db
 import mongoose from 'mongoose';
-// import { dbUrl } from './config';
 
 export const connect = async () => {
     try {
