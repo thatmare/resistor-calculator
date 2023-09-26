@@ -18,7 +18,9 @@ export class OhmValueCalculator {
     const digit1 = colorValues[bandAColor];
     const digit2 = colorValues[bandBColor];
     const multiplier = await getValues("multiplier", `${bandCColor}`);
+    console.log(multiplier, "aqui mutliplier")
     const tolerance = await getValues("tolerance", `${bandDColor}`);
+    console.log(tolerance, "aqui tolerance")
 
     if (multiplier === undefined || tolerance === undefined) {
       console.log(
@@ -35,14 +37,3 @@ export class OhmValueCalculator {
     };
   }
 }
-
-// const calculator = new OhmValueCalculator();
-
-// calculator
-//   .CalculateOhmValue("grey", "red", "silver", "gold")
-//   .then((result) => {
-//     console.log(result);
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
