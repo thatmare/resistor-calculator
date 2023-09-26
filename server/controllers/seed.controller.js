@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Value from "./models/value.model.js";
+import Value from "../models/value.model.js";
 
 export async function seedDatabase(req, res) {
   try {
@@ -53,6 +53,11 @@ export async function seedDatabase(req, res) {
         type: "multiplier",
         color: "grey",
         value: 100000000,
+      },
+      {
+        type: "multiplier",
+        color: "white",
+        value: 1000000000,
       },
       {
         type: "multiplier",
@@ -116,7 +121,5 @@ export async function seedDatabase(req, res) {
   } catch (e) {
     console.error("Error in data seeding", e);
     res.status(500).json({ message: "Error in data seeding" });
-  } finally {
-    mongoose.connection.close();
   }
 }

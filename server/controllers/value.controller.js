@@ -1,5 +1,6 @@
 import Value from "../models/value.model.js";
 
+// original fx to populate data
 export const postValue = async (req, res) => {
   const { type, color, value } = req.body;
 
@@ -18,7 +19,7 @@ export const postValue = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Error en el servidor" });
+    return res.status(500).json({ message: "Server Error" });
   }
 };
 

@@ -18,7 +18,7 @@ export function ColorPicker({ band, onColorChange, colors }) {
   return (
     <select
       onChange={handleSelectChange}
-      className={`w-80 h-10 m-3 rounded-md text-xl text-center text-slate-950 ${selectedClass} `}
+      className={`w-80 h-10 m-3 rounded-md text-xl text-center text-slate-900 ${selectedClass} `}
     >
       <option value="" className="">
         Select a color
