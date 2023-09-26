@@ -1,6 +1,6 @@
-import { getValues } from "../Services/fetchValues";
+import { getValues } from "../services/fetchValues.js"
 
-class OhmValueCalculator {
+export class OhmValueCalculator {
   async CalculateOhmValue(bandAColor, bandBColor, bandCColor, bandDColor) {
     const colorValues = {
       black: 0,
@@ -18,16 +18,18 @@ class OhmValueCalculator {
     const digit1 = colorValues[bandAColor];
     const digit2 = colorValues[bandBColor];
     const multiplier = await getValues("multiplier", `${bandCColor}`);
+    console.log(multiplier, "aqui mutliplier")
     const tolerance = await getValues("tolerance", `${bandDColor}`);
+    console.log(tolerance, "aqui tolerance")
 
     if (multiplier === undefined || tolerance === undefined) {
       console.log(
-        "Error: No se pudieron obtener los valores de multiplier o tolerance."
+        "Error: Could not get multiplier and tolerance values."
       );
       return null;
     }
 
-    const ohmValue = (digit1 * 10 + digit2) * multiplier;
+    const ohmValue = ((digit1 * 10) + digit2) * multiplier;
 
     return {
       ohmValue,
@@ -35,14 +37,3 @@ class OhmValueCalculator {
     };
   }
 }
-
-const calculator = new OhmValueCalculator();
-
-calculator
-  .CalculateOhmValue("blue", "green", "yellow", "green")
-  .then((result) => {
-    console.log(result);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
