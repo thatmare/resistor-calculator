@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { OhmValueCalculator } from "../utils/OhmCalculator.class.js";
-//import { formatNumber } from "../utils/NumberFormat.js";
 import { ColorPicker } from "./ColorPicker.jsx";
 import { Digits } from "../models/Digits.js";
 import { Multiplier } from "../models/Multiplier.js";
@@ -107,7 +106,14 @@ export function Calculator() {
           ></ColorPicker>
         </div>
         <div className="flex flex-col justify-center">
-          <ResistorDrawing result={result} message={message}></ResistorDrawing>
+          <ResistorDrawing
+            bandAColor={bandAColor}
+            bandBColor={bandBColor}
+            bandCColor={bandCColor}
+            bandDColor={bandDColor}
+            result={result}
+            message={message}
+          />
         </div>
       </div>
     </div>
